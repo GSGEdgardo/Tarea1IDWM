@@ -61,6 +61,20 @@ public class AccountRepository : IAccountRepository
         return accountDto;
     }
 
+    public async Task<User> GetUserByEmailAsync(string email)
+    {
+        //La idea es poder obtener al usuario por su correo electrónico, entonces cuando lo
+        //tengo poder devolverlo por completo, no se si está correcto porque la idea del Dto es enviar
+        //lo que necesito, yo ahora necesito la contraseña para validarla, pero no se si es mejor obtenerla así o enviarla
+        //y devolver un booleano al controlador diciendo si la contraseña está bien o no
+        User? user = await _dataContext
+            .Users.Where(student => student.Email == email)
+            .FirstOrDefaultAsync();
+
+        return user;
+    }
+
+
     public async Task<bool> SaveChangesAsync()
     {
         return 0 < await _dataContext.SaveChangesAsync();
