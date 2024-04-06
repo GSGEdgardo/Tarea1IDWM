@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "069f37f7-d642-43fa-9408-e490df45314b",
+		"_postman_id": "8348be55-14b4-4da7-9c1d-54518600c0a0",
 		"name": "Courses",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25678350"
+		"_exporter_id": "26766428",
+		"_collection_link": "https://lively-crescent-763225.postman.co/workspace/IDWM~f4bbb70e-6331-4ee1-a1e6-01e89f43e91c/collection/26766428-8348be55-14b4-4da7-9c1d-54518600c0a0?action=share&source=collection_link&creator=26766428"
 	},
 	"item": [
 		{
@@ -28,6 +29,24 @@
 					"path": [
 						"account",
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/account/login",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"account",
+						"login"
 					]
 				}
 			},
