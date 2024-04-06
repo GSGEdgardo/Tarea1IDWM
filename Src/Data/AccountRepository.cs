@@ -65,12 +65,13 @@ public class AccountRepository : IAccountRepository
     //El passwordSalt y el passwordHash
     public async Task<PasswordDto> GetPasswordByEmailAsync(string email)
     {
+        //Se busca el usuario por su correo electrónico y se obtiene el primero que cumpla con la condición
         var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (user == null)
         {
             return null;
         }
-
+        //En caso de encontrarlo se mapea el usuario a un PasswordDto y se retorna para usarlo en el controlador
         var passwordDto = _mapper.Map<PasswordDto>(user);
         return passwordDto;
     }
