@@ -61,20 +61,19 @@ public class AccountRepository : IAccountRepository
         return accountDto;
     }
 
-    public async Task<User> GetUserByEmailAsync(string email)
+    //Para obtener la contraseña de un usuario por su correo electrónico se creó un Dto de contraseña que trae
+    //El passwordSalt y el passwordHash
+    public async Task<PasswordDto> GetPasswordByEmailAsync(string email)
     {
-        //La idea es poder obtener al usuario por su correo electrónico, entonces cuando lo
-        //tengo poder devolverlo por completo, no se si está correcto porque la idea del Dto es enviar
-        //lo que necesito, yo ahora necesito la contraseña para validarla, pero no se si es mejor obtenerla así o enviarla
-        //y devolver un booleano al controlador diciendo si la contraseña está bien o no
-        User? user = await _dataContext
-            .Users.Where(student => student.Email == email)
-            .FirstOrDefaultAsync();
+        var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+        if (user == null)
+        {
+            return null;
+        }
 
-        return user;
+        var passwordDto = _mapper.Map<PasswordDto>(user);
+        return passwordDto;
     }
-
-
     public async Task<bool> SaveChangesAsync()
     {
         return 0 < await _dataContext.SaveChangesAsync();

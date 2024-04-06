@@ -8,5 +8,5 @@ public interface IAccountRepository
     Task<bool> SaveChangesAsync();
     Task AddAccountAsync(RegisterDto registerDto);
     Task<AccountDto?> GetAccountAsync(string email);
-    Task<User> GetUserByEmailAsync(string email);
+    Task<PasswordDto> GetPasswordByEmailAsync(string email);
 }
